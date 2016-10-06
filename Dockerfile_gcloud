@@ -1,0 +1,16 @@
+# To run a container based on the image, allowing GUI access (unsecured way):
+# xhost +
+# docker run --rm -v /tmp/.X11-unix:/tmp/.X11-unix -ti -e DISPLAY=$DISPLAY
+
+FROM renatorfr/ubuntu_base
+
+# Install
+RUN apt-get -y update && apt-get -y upgrade
+RUN apt-get -y update && apt-get -y install \
+  curl
+
+# Google Cloud Tools
+WORKDIR /
+RUN curl https://dl.google.com/dl/cloudsdk/release/install_google_cloud_sdk.bash | bash
+
+CMD ["/bin/bash"]
