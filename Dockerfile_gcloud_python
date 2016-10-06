@@ -1,0 +1,15 @@
+# To run a container based on the image, allowing GUI access (unsecured way):
+# xhost +
+# docker run --rm -v /tmp/.X11-unix:/tmp/.X11-unix -ti -e DISPLAY=$DISPLAY
+
+FROM renatorfr/ubuntu_gcloud
+
+# Python
+RUN apt-get -y update && apt-get -y install \
+  python2.7 \
+  python-pip
+RUN pip install --upgrade pip
+
+EXPOSE 8080 8000
+
+CMD ["/bin/bash"]
